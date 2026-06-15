@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الدفع - رجل</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="warning-banner">💰 الخطوة الأخيرة: الدفع وتأكيد الطلب</div>
+        <h2>اختر طريقة الدفع المناسبة</h2>
+
+        <div id="paymentOptions">
+            <div class="payment-option" onclick="selectPayment('normal')">
+                <h3>📌 طلب عادي</h3>
+                <p>المبلغ: <strong style="color:#b45309; font-size:28px;">35,000</strong> جنيه سوداني</p>
+                <small>المعالجة خلال 48 ساعة</small>
+            </div>
+            <div class="payment-option" onclick="selectPayment('urgent')">
+                <h3>⚡ طلب مستعجل</h3>
+                <p>المبلغ: <strong style="color:#b45309; font-size:28px;">40,000</strong> جنيه سوداني</p>
+                <small>المعالجة خلال 24 ساعة + أولوية قصوى</small>
+            </div>
+        </div>
+
+        <div class="account-box" id="accountBox" style="display:none;">
+            <p>💰 رقم حساب ماي كاشي للتحويل:</p>
+            <div class="copy-area">
+                <input type="text" value="400963087" id="accountNumber" readonly>
+                <button onclick="copyToClipboard('400963087')">نسخ 📋</button>
+            </div>
+            <p id="amountDisplay" style="font-size:22px; font-weight:bold; color:#b45309;"></p>
+            <p>⚠️ بعد التحويل، ارفع صورة الإيصال هنا:</p>
+            <input type="file" id="receipt" accept="image/*" required>
+            <button onclick="submitPayment()" style="margin-top:15px;">✔️ تأكيد الدفع ورفع الإيصال</button>
+        </div>
+
+        <div id="successMsg" style="display:none; text-align:center; background:#d4edda; padding:20px; border-radius:28px;">
+            <h3>✅ تم استلام طلبك بنجاح</h3>
+            <p>سيتم مراجعة الإيصال خلال 60 ثانية، ثم سيصلك إشعار مصور عبر واتساب لترتيب المقابلة.</p>
+        </div>
+    </div>
+    <footer class="footer"><p>© 2026 - الدفع آمن وسري</p></footer>
+    <script src="script.js"></script>
+    <script>
+        let selectedAmount = 0;
+
+        function selectPayment(type) {
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            if(type === 'normal') {
+                selectedAmount = 35000;
+                document.querySelector('.payment-option:first-child').classList.add('selected');
+            } else {
+                selectedAmount = 40000;
+                document.querySelector('.payment-option:last-child').classList.add('selected');
+            }
+            document.getElementById('amountDisplay').innerText = 'المبلغ المطلوب: ' + selectedAmount + ' جنيه سوداني';
+            document.getElementById('accountBox').style.display = 'block';
+        }
+
+        function submitPayment() {
+            let file = document.getElementById('receipt').files[0];
+            if(!file || selectedAmount === 0) {
+                alert('الرجاء اختيار طريقة الدفع ورفع الإيصال أولاً');
+                return;
+            }
+            // محاكاة الرفع
+            let reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById('accountBox').style.display = 'none';
+                document.getElementById('paymentOptions').style.display = 'none';
+                document.getElementById('successMsg').style.display = 'block';
+                // حذف البيانات بعد النجاح أو حفظها للاستخدام
+                setTimeout(() => {
+                    alert("📱 سيصلك إشعار واتساب خلال دقيقة لتحديد مكان المقابلة.");
+                }, 1000);
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>
