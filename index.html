@@ -1,58 +1,53 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل البيانات</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة اللقاءات الآمنة - اختبار الجنس</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>تسجيل البيانات الشخصية</h2>
-    <form id="form1">
-      <label>السكن:</label>
-      <input type="text" id="sakan" required>
+    <div class="container">
+        <div class="warning-banner">
+            ⚠️ تحذير هام: هذا الموقع مخصص للأشخاص البالغين العقلاء الذين تجاوزوا 19 عامًا فقط. لا يُسمح بمشاركة الموقع مع أي شخص دون السن القانونية.
+        </div>
 
-      <label>العمر:</label>
-      <input type="number" id="age" required>
+        <h2>مرحباً بك في منصة اللقاءات الآمنة</h2>
+        <p class="subtitle">يرجى تحديد هويتك لإكمال التسجيل</p>
 
-      <label>الطول بالسم:</label>
-      <input type="number" id="height" required>
+        <div class="gender-selection">
+            <div class="gender-card" onclick="selectGender('man')">
+                <div class="gender-icon">👨</div>
+                <h3>رجل</h3>
+                <p>أبحث عن شريكة حياتي</p>
+            </div>
+            <div class="gender-card" onclick="selectGender('woman')">
+                <div class="gender-icon">👩</div>
+                <h3>امرأة</h3>
+                <p>أبحث عن شريك حياتي</p>
+            </div>
+        </div>
 
-      <label>لون البشرة:</label>
-      <select id="skin" required>
-        <option value="">اختر</option>
-        <option>فاتح</option>
-        <option>قمحي</option>
-        <option>أسمر</option>
-        <option>داكن</option>
-      </select>
+        <div class="security-note">
+            <p>🔒 الموقع يحافظ على السرية التامة لبياناتك</p>
+            <p>✅ ضمان موافقة الطرفين قبل التنفيذ</p>
+        </div>
+    </div>
 
-      <label>هل تستطيع السفر؟</label>
-      <div class="radio-group">
-        <input type="radio" name="travel" value="نعم" required> نعم
-        <input type="radio" name="travel" value="لا"> لا
-      </div>
+    <footer class="footer">
+        <p>© 2026 جميع الحقوق محفوظة - منصة اللقاءات الآمنة</p>
+        <p>للتواصل والدعم الفني فقط | الموقع غير مسؤول عن أي استخدام خاطئ</p>
+    </footer>
 
-      <label>هل انت متزوج؟</label>
-      <div class="radio-group">
-        <input type="radio" name="married" value="نعم" required> نعم
-        <input type="radio" name="married" value="لا"> لا
-      </div>
-
-      <label>رقم التلفون للتواصل:</label>
-      <input type="tel" id="phone" placeholder="01xxxxxxxxx" required>
-
-      <button type="submit">موافق</button>
-    </form>
-  </div>
-
-  <!-- الفوتر حقوق النشر -->
-  <footer class="footer">
-    <p>© 2026 جميع الحقوق محفوظة - منصة الخدمات المصرية</p>
-    <p>للتواصل والدعم الفني فقط | الموقع غير مسؤول عن أي استخدام خاطئ</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function selectGender(gender) {
+            if(gender === 'man') {
+                window.location.href = 'man.html';
+            } else {
+                window.location.href = 'woman.html';
+            }
+        }
+    </script>
 </body>
 </html>
